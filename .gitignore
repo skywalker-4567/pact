@@ -1,0 +1,26 @@
+# Java / Maven
+pact-api/target/
+*.class
+*.jar
+!pact-api/.mvn/wrapper/maven-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Node / Expo
+pact-app/node_modules/
+pact-app/.expo/
+pact-app/dist/
+pact-app/web-build/
+
+# Env files — never commit secrets
+pact-app/.env
+pact-app/.env.local
+*.env
+.env
+
+# OS junk
+.DS_Store
+Thumbs.db
