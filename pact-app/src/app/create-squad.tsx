@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Pressable, StyleSheet, ActivityIndicator } from "react-native";
 import { router } from "expo-router";
-import { createSquad } from "../src/api/squads";
-import { ApiError } from "../src/api/client";
+import { createSquad } from "../api/squads";
+import { ApiError } from "../api/client";
 
 export default function CreateSquadScreen() {
   const [name, setName] = useState("");
@@ -18,7 +18,7 @@ export default function CreateSquadScreen() {
       setInviteCode(result.inviteCode);
     } catch (err) {
       if (err instanceof ApiError) {
-        setErrorMessage(err.message);
+        setErrorMessage(err instanceof Error ? err.message : "Something went wrong. Please try again.");
       } else {
         setErrorMessage("Something went wrong. Please try again.");
       }

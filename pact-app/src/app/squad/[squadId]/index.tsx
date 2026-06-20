@@ -9,15 +9,15 @@ import {
   Alert,
 } from "react-native";
 import { router, useLocalSearchParams, useFocusEffect } from "expo-router";
-import { getSquadDetail, SquadDetail } from "../../../src/api/squads";
+import { getSquadDetail, SquadDetail } from "../../../api/squads";
 import {
   listGoals,
   recordCheckIn,
   toLocalDateString,
   GoalSummary,
-} from "../../../src/api/goals";
-import { ApiError } from "../../../src/api/client";
-import { useAuth } from "../../../src/auth/AuthContext";
+} from "../../../api/goals";
+import { ApiError } from "../../../api/client";
+import { useAuth } from "../../../auth/AuthContext";
 
 export default function SquadDetailScreen() {
   const { squadId } = useLocalSearchParams<{ squadId: string }>();
@@ -41,7 +41,7 @@ export default function SquadDetailScreen() {
       setGoals(goalList);
     } catch (err) {
       if (err instanceof ApiError) {
-        setErrorMessage(err.message);
+        setErrorMessage(err instanceof Error ? err.message : "Something went wrong. Please try again.");
       } else {
         setErrorMessage("Something went wrong. Please try again.");
       }

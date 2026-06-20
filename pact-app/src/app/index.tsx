@@ -8,9 +8,9 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { router, useFocusEffect } from "expo-router";
-import { useAuth } from "../src/auth/AuthContext";
-import { listMySquads, SquadSummary } from "../src/api/squads";
-import { ApiError } from "../src/api/client";
+import { useAuth } from "../auth/AuthContext";
+import { listMySquads, SquadSummary } from "../api/squads";
+import { ApiError } from "../api/client";
 
 export default function HomeScreen() {
   const { member, logout } = useAuth();
@@ -26,7 +26,7 @@ export default function HomeScreen() {
       setSquads(result);
     } catch (err) {
       if (err instanceof ApiError) {
-        setErrorMessage(err.message);
+        setErrorMessage(err instanceof Error ? err.message : "Something went wrong. Please try again.");
       } else {
         setErrorMessage("Something went wrong. Please try again.");
       }

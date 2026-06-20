@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Stack, router, useSegments } from "expo-router";
 import { ActivityIndicator, View } from "react-native";
-import { AuthProvider, useAuth } from "../src/auth/AuthContext";
+import { AuthProvider, useAuth } from "../auth/AuthContext";
 
 function RootNavigation() {
   const { token, isRestoring } = useAuth();

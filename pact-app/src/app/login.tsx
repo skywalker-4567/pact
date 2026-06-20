@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Pressable, StyleSheet, ActivityIndicator } from "react-native";
 import { router, Link } from "expo-router";
-import { useAuth } from "../src/auth/AuthContext";
-import { ApiError } from "../src/api/client";
+import { useAuth } from "../auth/AuthContext";
+import { ApiError } from "../api/client";
 
 export default function LoginScreen() {
   const { login } = useAuth();
@@ -19,7 +19,7 @@ export default function LoginScreen() {
       router.replace("/");
     } catch (err) {
       if (err instanceof ApiError) {
-        setErrorMessage(err.message);
+        setErrorMessage(err instanceof Error ? err.message : "Something went wrong. Please try again.");
       } else {
         setErrorMessage("Something went wrong. Please try again.");
       }

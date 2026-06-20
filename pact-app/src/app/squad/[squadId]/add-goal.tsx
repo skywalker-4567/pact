@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Pressable, Switch, StyleSheet, ActivityIndicator } from "react-native";
 import { router, useLocalSearchParams } from "expo-router";
-import { createGoal } from "../../../src/api/goals";
-import { ApiError } from "../../../src/api/client";
+import { createGoal } from "../../../api/goals";
+import { ApiError } from "../../../api/client";
 
 export default function AddGoalScreen() {
   const { squadId } = useLocalSearchParams<{ squadId: string }>();
@@ -20,7 +20,7 @@ export default function AddGoalScreen() {
       router.replace(`/squad/${squadId}`);
     } catch (err) {
       if (err instanceof ApiError) {
-        setErrorMessage(err.message);
+        setErrorMessage(err instanceof Error ? err.message : "Something went wrong. Please try again.");
       } else {
         setErrorMessage("Something went wrong. Please try again.");
       }

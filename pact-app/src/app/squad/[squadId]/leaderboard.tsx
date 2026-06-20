@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from "react";
 import { View, Text, FlatList, Pressable, StyleSheet, ActivityIndicator } from "react-native";
 import { useLocalSearchParams, useFocusEffect } from "expo-router";
-import { getLeaderboard, LeaderboardEntry } from "../../../src/api/leaderboard";
-import { ApiError } from "../../../src/api/client";
-import { useAuth } from "../../../src/auth/AuthContext";
+import { getLeaderboard, LeaderboardEntry } from "../../../api/leaderboard";
+import { ApiError } from "../../../api/client";
+import { useAuth } from "../../../auth/AuthContext";
 
 export default function LeaderboardScreen() {
   const { squadId } = useLocalSearchParams<{ squadId: string }>();
@@ -21,7 +21,7 @@ export default function LeaderboardScreen() {
       setEntries(result);
     } catch (err) {
       if (err instanceof ApiError) {
-        setErrorMessage(err.message);
+        setErrorMessage(err instanceof Error ? err.message : "Something went wrong. Please try again.");
       } else {
         setErrorMessage("Something went wrong. Please try again.");
       }

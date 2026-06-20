@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Pressable, StyleSheet, ActivityIndicator } from "react-native";
 import { router } from "expo-router";
-import { joinSquad } from "../src/api/squads";
-import { ApiError } from "../src/api/client";
+import { joinSquad } from "../api/squads";
+import { ApiError } from "../api/client";
 
 export default function JoinSquadScreen() {
   const [inviteCode, setInviteCode] = useState("");
@@ -17,7 +17,7 @@ export default function JoinSquadScreen() {
       router.replace("/");
     } catch (err) {
       if (err instanceof ApiError) {
-        setErrorMessage(err.message);
+        setErrorMessage(err instanceof Error ? err.message : "Something went wrong. Please try again.");
       } else {
         setErrorMessage("Something went wrong. Please try again.");
       }
